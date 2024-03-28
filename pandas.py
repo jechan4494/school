@@ -83,16 +83,19 @@ data
 data5.iloc[1:4] #1행에서3행까지 출력 
 
 cars =[50,40,20,30,10]
-data5['car'] = cars
+data5['car'] = cars #car데이터로 추가해라
 data5
 
-data5['hight1'] = data5.car >=30
+data5['hight1'] = data5.car >=30 #hight1를 추가해되 30보다 클 시 true아니면 false
 data5
 
-data5['hight2'] = data5.car>=40; data5
+data5['hight2'] = data5.car>=40; data5 
 
-data5.drop(hight1,axis=1)
+data5.drop(hight1,axis=1) # 열단위로 삭제해라(실제 삭제안됨) drop
+data5 
+
+a=data5.drop('hight2',axis=1) #삭제하는 방식을 a에 저장
+data5.drop('hight1',axis=1,inplace=True) #실제로 삭제해라 inplace=True
+
+data5.drop('대구',axis=0,inplace=True) # 대구 행이 사라짐
 data5
-
-a=data5.drop('hight2',axis=1)
-data5.drop('hight1',axis=1,inplace=True)
