@@ -30,7 +30,7 @@ data4 =pd.DataFrame(dic4); data4
 dic=dic3 = {'city' :['서울','부산','대구','대전','광주'],
             'year' : [2017,2017,2018,2018,2018],
             'temp' :[18,20,19,21,20]}
-data6 =pd.Series(dic6); data6
+data6 =pd.Series(dic); data6
 
 import pandas as pd
 dic5 = {'city' :['서울','부산','대구','대전','광주'],
@@ -38,22 +38,14 @@ dic5 = {'city' :['서울','부산','대구','대전','광주'],
             'temp' :[18,20,19,21,20]}
 data6 =pd.Series(dic5); data6
 
-data5 = pd.DataFrame(dic5) ; data5
+data5 = pd.DataFrame(dic5)
 
-data5['도시']
+data5['city']
 
-data[['도시','날씨']]
+data5.city
 
-data5.도시
-
-dat5.loc['기린']
-
-data5.loc[5.2]
-
-data.set_index('도시')
+data5.set_index('city')
 data5
-
-a =data5['cirty']; a
 
 data5.index=['가','a',5.2,'라','기린'] ; data5 #index이름을 바꿔라
 
@@ -91,7 +83,7 @@ data5
 
 data5['hight2'] = data5.car>=40; data5 
 
-data5.drop(hight1,axis=1) # 열단위로 삭제해라(실제 삭제안됨) drop
+data5.drop('hight1',axis=1) # 열단위로 삭제해라(실제 삭제안됨) drop
 data5 
 
 a=data5.drop('hight2',axis=1) #삭제하는 방식을 a에 저장
