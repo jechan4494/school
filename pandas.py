@@ -8,7 +8,7 @@ import pandas as pd
 from numpy import *
 from pandas import *
 
-a =pd.series([1,2,3,4])
+a =pd.Series([1,2,3,4])
 print(a)
 
 b=pd.Series([1,2,3],index=['a','b','c'])
