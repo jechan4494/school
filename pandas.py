@@ -66,11 +66,10 @@ data5.loc[5.2]
 data5.set_index('도시') #set_index원본을 바꾸진않고 바꾼 상태를 일시적으로 보여줌(미리보기) 
 data5
 
-data=data5.set_index('도시'), data8
+data8=data5.set_index('도시'); data8
 data5.set_index('도시',inplace=True); data5 #inplace=True 원본을 바꿔줌(실제 바꿈)
 
 data5.loc['대전']
-data
 
 data5.iloc[1:4] #1행에서3행까지 출력 
 
@@ -87,7 +86,9 @@ data5.drop('hight1',axis=1) # 열단위로 삭제해라(실제 삭제안됨) dro
 data5 
 
 a=data5.drop('hight2',axis=1) #삭제하는 방식을 a에 저장
+
 data5.drop('hight1',axis=1,inplace=True) #실제로 삭제해라 inplace=True
+data5
 
 data5.drop('대구',axis=0,inplace=True) # 대구 행이 사라짐
 data5
