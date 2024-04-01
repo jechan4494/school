@@ -29,7 +29,7 @@ int main() {
     return 0; // main 함수에서 반환값을 설정하는 것이 좋습니다.
 }
 
-// 2번
+// 2번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 #include <string>
@@ -96,7 +96,7 @@ public:
 	}
 };
 
-// 3번
+// 3번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 #include <string>
@@ -146,7 +146,7 @@ int main() {
 	cout << a.getOnwer() << "의 잔액은" << a.inquiry() << endl;
 }
 
-// 4번
+// 4번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 using namespace std;
@@ -204,7 +204,7 @@ int main() {
 }
 
 
-// 5번
+// 5번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 using namespace std;
@@ -235,7 +235,7 @@ int main() {
 
 }
 
-// 6번
+// 6번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 #include <cstdlib> // rand 함수 사용을 위한 헤더 파일
@@ -268,7 +268,7 @@ int EvenRandom::next() {
 	}
 }
 
-// 7번번
+// 7번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 #include <ctime>
@@ -311,7 +311,7 @@ int EvenRandom::nextInRange(int num, int start, int end) {
 	}
 }
 
-// 8
+// 8번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 #include <string>
@@ -339,7 +339,7 @@ inline bool Integer::isEven() {
 		false;
 }
 
-// 9번
+// 9번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 using namespace std;
@@ -389,7 +389,7 @@ void Oval::show() {
 	cout << width << "," << height << endl;
 }
 
-// 10번
+// 10번  ///////////////////////////////////////////////////////
 
 #include <iostream>
 using namespace std;
