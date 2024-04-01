@@ -115,7 +115,7 @@ int main() {
 	s.read();
 	s.write();
 
-	cout << "가장 큰 수는 ", s.big() << ;
+	cout << "가장 큰 수는 ", s.big();
 }
 
 
