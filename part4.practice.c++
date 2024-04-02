@@ -118,5 +118,56 @@ int main() {
 	cout << "가장 큰 수는 ", s.big();
 }
 
+// 5번  ///////////////////////////////////////////////////////
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+
+	string s;
+	srand((unsigned)time(0));
+
+	cout << "아래에 한 줄을 입력하세요.(exit를 입력하면 종료합니다.)\n>>";
+
+	while (true) {
+		getline(cin, s, '\n');
+		if (s == "exit")
+			break;
+	}
+	int index = rand() % (s.length()); // 바뀔자리를 문자 최대길이까지 정함
+	s[index] = rand() % 26 + 'a'; // a~z값 랜덤생성하여 문자열 바뀔자리 index에 값을 넣음
+
+	cout << s << endl;
+
+}
+
+// 6번  ///////////////////////////////////////////////////////
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+
+	string s;
+
+	cout << "아래에 한줄을 입력하세요.(exit)를 입력하면 종료합니다.";
+
+	while (true) {
+		cout << ">>";
+		getline(cin, s, '\n');
+		if (s == "eixt")
+			break;
+		revers(s.begin(), s.end());
+		cout << s << endl;
+	}
+}
 
 
