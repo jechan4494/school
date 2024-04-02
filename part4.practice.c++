@@ -170,4 +170,104 @@ int main() {
 	}
 }
 
+// 7번  ///////////////////////////////////////////////////////
+
+//circle.h
+#ifndef CIRCLE_H 
+#define CIRCLE_H
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Circle{
+
+	int radius; string name;
+
+public:
+	double getArea(); string getName();
+	void setRadius(int redius);
+	void setCircle(string name, int redius);
+};
+
+#endif 
+
+//circle.cpp
+
+#include "circle.h"
+#include <iostream>
+
+using namespace std;
+
+void Circle::setRadius(int radius) {
+	this-> radius = radius;
+}
+void Circle::setCircle(string name, int radius) {
+	this->name = name; this->radius = radius;
+}
+double Circle::getArea() {
+	return 3.14 * radius * radius;
+}
+string Circle::getName() {
+	return name;
+}
+
+//main.cpp
+
+#include <iostream>
+#include "circle.h"
+
+using namespace std;
+int main() {
+	Circle c[3];
+
+	int radius, count = 0;
+
+	for (int i = 0; i < 3; i++) {
+		cout << "원" << i + 1 << "의 반지름";
+		cin >> radius;
+		c[i].setRadius(radius);
+	}
+	for (int i = 0; i < 3; i++) {
+		if (c[i].getArea() > 100) {
+			count++;
+		}
+	}
+	cout << "면적이 100보다 큰 원은" << count << "개 입니다.";
+}
+
+
+// 8번  ///////////////////////////////////////////////////////
+
+#include <iostream>
+#include "circle.h"
+
+using namespace std;
+
+int main() {
+
+	Circle* p;
+	int size; int count = 0;
+	cout << "원의 개수>>"; 
+	cin >> size;
+	if (size < 1)
+		return 0;
+
+	p = new Circle[size];
+	int radius;
+	for (int i = 0; i < size; i++) {
+		cout << "원" << i + 1 << "의 반지름>>";
+		cin >> radius; p[i].setRadius(radius);
+	}
+	for (int i = 0; i < size; i++) {
+		if (p[i].getArea() > 100) {
+			count++;
+		}
+	}
+	cout << "면적이 100보다 큰 원은" << count << "개 입니다.";
+	delete[] p;
+}
+
+// 9번  ///////////////////////////////////////////////////////
+
 
