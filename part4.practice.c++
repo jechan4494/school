@@ -270,4 +270,184 @@ int main() {
 
 // 9번  ///////////////////////////////////////////////////////
 
+//main.cpp
+#include <iostream>
+#include <string>
+#include "person.h"
+
+using namespace std;
+
+int main() {
+
+	string name, tel;
+	Person* p;
+	
+	p = new Person[3];
+
+
+	cout << "이름과 전화번호를 입력해주세요";
+
+	for (int i = 0; i < 3; i++) {
+		cout << "사람" << i + 1 << ">>";
+		cin >> name >> tel; p[i].set(name, tel);
+	}
+	for (int i = 0; i < 3; i++) {
+		cout << "모든 사람의 이름은" << p[i].getName();}
+	cout << endl;
+	cout << "전화번호를 검색합니다. 이름을 입력하세요>>";
+	cin >> name;
+	for (int i = 0; i < 3; i++) {
+		if (name == p[i].getName()) {
+			cout << "전화번호는" << p[i].getTel() << endl;
+		}
+		else
+			cout << "없는 사람입니다.";
+	}
+}
+
+//Person.cpp
+
+#include <iostream>
+#include <string>
+#include "person.h"
+
+using namespace std;
+
+void Person::set(string name, string tel) {
+	this->name = name; this->tel = tel;
+}
+Person::Person() {
+
+}
+
+//person.h
+
+#pragma once
+#ifndef PERSON_H
+#define PERSON_H
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person {
+
+	string name;
+	string tel;
+public:
+	Person();
+
+	string getName() {
+		return name;
+	}
+	string getTel() {
+		return tel;
+	}
+	void set(string name, string tel);
+
+};
+
+
+#endif
+
+// 11번 //////////////////////////////////////////
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class container {
+
+	int size;
+public:
+	void fill() {
+		size = 10; 
+	}
+	void consume() {
+		size--;
+	}
+	int getSize() {
+		return size;
+	}
+};
+
+class CoffeeMachine {
+
+	container tong[3]; // tong[0] - 커피, tong[1] - 물 , tong[2] - 설탕
+
+public:
+	void selectEspresso();
+	void selectAmericano();
+	void selectSugercoffee();
+	void fill();
+	void show();
+	void run();
+};
+
+void CoffeeMachine::selectEspresso() {
+	tong[0].consume(); 
+	tong[1].consume();
+}
+void CoffeeMachine::selectAmericano() {
+	tong[0].consume();
+	tong[1].consume();
+	tong[1].consume();
+}
+void CoffeeMachine::selectSugercoffee() {
+	tong[0].consume();
+	tong[1].consume();
+	tong[1].consume(); 
+	tong[2].consume();
+}
+
+void CoffeeMachine::fill() {
+	for (int i = 0; i < 3; i++) {
+		tong[i].fill();
+	}
+	show();
+}
+
+void CoffeeMachine::show() {
+	cout << "커피 : " << tong[0].getSize() << "물 : " << tong[1].getSize() << "커피 : " << tong[2].getSize();
+}
+
+void CoffeeMachine::run() {
+	cout << "***** 커피자판기를 작동합니다. ******\n";
+
+	while (true) {
+		int menu;
+		cout << "\n메뉴를 눌러주세요(1:에스프레소, 2:아메리카노, 3:설탕커피, 4:잔량보기, 5:채우기)>>";
+		cin >> menu;
+		if (menu == 1) {
+			if (tong[0].getSize() == 0 && tong[0].getSize() == 0)
+				cout << "재료가 없습니다.";
+			else
+				cout << "에스프레소 드세요";
+		}
+		if (menu == 2) {
+			if (tong[0].getSize() == 0 && tong[1].getSize() <= 1)
+				cout << "재료가 없습니다.";
+			else
+				cout << "아메리카노 드세요";
+		}
+		if (menu == 3) {
+			if (tong[0].getSize() == 0 && tong[1].getSize() <= 1 && tong[2].getSize() == 0)
+				cout << "재료가 없습니다.";
+			else
+				cout << "설탕커피 드세요";
+		}
+		if (menu == 4) {
+			show();
+		}
+		if (menu == 5) {
+			fill();
+		}
+	}
+}
+
+	int main() {
+		CoffeeMachine r;
+		r.run();
+	}
 
