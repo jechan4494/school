@@ -350,6 +350,69 @@ public:
 
 #endif
 
+// 10번 /////////////////////////////////////////
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person {
+	string name;
+public:
+
+	Person();
+	Person(string name) {
+		this->name = name;
+	}
+	string getName() {
+		return name;
+	}
+	void setName(string name) {
+		this->name = name;
+	}
+};
+class Family {
+	Person* p;
+	int size;
+	string name;
+public:
+	Family(string name, int size);
+	void show();
+	~Family();
+
+	void setName(int index, string name) {
+		p[index].setName(name);
+	}
+};
+	Family::Family(string name, int size) {
+		this->name = name;
+		this->size = size;
+		p = new Person[size];
+	}
+	void Family::show() {
+		cout << name << "가족은 다음과 같이" << size << "명 입니다.\n";
+		for (int i = 0; i < size; i++) {
+			cout << p[i].getName() << " ";
+		}
+	}
+		Family::~Family() {
+			delete[] p;
+		}
+
+int main() {
+
+	Family* simpson = new Family("Simpson", 3);
+
+	simpson->setName(0, "Simpson");
+	simpson->setName(1, "Simpson2");
+	simpson->setName(2, "Simpson3");
+
+	simpson->show();
+	delete simpson;
+	return 0;
+
+}
+
 // 11번 //////////////////////////////////////////
 
 #include <iostream>
