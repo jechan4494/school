@@ -186,8 +186,8 @@ class Circle{
 
 public:
 	double getArea(); string getName();
-	void setRadius(int redius);
-	void setCircle(string name, int redius);
+	void setRadius(int radius);
+	void setCircle(string name, int radius);
 };
 
 #endif 
