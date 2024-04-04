@@ -93,4 +93,68 @@ data5
 data5.drop('대구',axis=0,inplace=True) # 대구 idex 행이 사라짐
 data5
 
+#################################################################
+
+import pandas as pd
+import numpy as np
+
+b = pd.Series([1,2,3],index =['a','b','c'])
+print(b)
+
+# 행에서 최대값 - 최솟값
+def f1(x):
+    k=x.max() - x.min() 
+    return k
+    
+def f2(x):
+    return x.max() - x.min()
+
+f3 = lambda x: x.max() - x.min() # f3 : 함수 이름 , x : 매개변수 , x.max() - x.min():함수내용
+#f1 == f2 == f3
+
+df = pd.DataFrame(np.arange(12).reshape(4,3), # arange() 1차원으로 만들어라 reshape() 2차원 배열의 형태를 바꿔라 4행3열
+                  columns=['A열','B열','C열'],
+                  index=['a','b','c','d'])
+df
+
+df.apply(f2) # 행기준 (기본은 열기준)
+
+df.apply(f3,0) # 행기준 
+
+df.apply(f3,1) # 열기준
+
+frame = DataFrame(np.arange(8).reshape(2,4),
+                  index=['three','one'],
+                  columns=['d','a','가','c'])
+frame
+
+frame.sort_index() # sort_index index를 오름차순으로 정렬
+frame2 = frame.sort_index(axis=0) # key값 정렬 행기준 
+frame2
+
+frame.sort_index(axis=1) # key값 정렬 열기준
+
+frame.sort_index(axis=1,ascending=False)
+
+frame.sort_index(axis=1,ascending=False,inplace=True)
+frame # inplace를 실행시 기본값 변경 데이터 frame 입력
+
+frame.sort_values(by='가',ascending=False)
+
+frame2=DataFrame({'b':[4,7,3,2],'a':[4,9,2,5],'c':[5,3,7,9]})
+frame2
+
+frame2.sort_values(by='b')
+
+frame2.sort_values(by='a')
+
+#######################################
+
+obj =Series([100,23,55,44,22,99,33]); obj
+
+obj.rank()
+
+obj.rank(ascending=False)
+
+obj2=Series([100,23,55,44,22,44,33]);obj
 
