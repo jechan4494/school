@@ -42,18 +42,18 @@ data5 = pd.DataFrame(dic5)
 
 data5['city']
 
-data5.city
+data5.city # 객체지향 city열만 출력
 
 data5.set_index('city')
 data5
 
-data5.index=['가','a',5.2,'라','기린'] ; data5 #index이름을 바꿔라
+data5.index=['가','a',5.2,'라','기린'] ; # data5 #index이름을 바꿔라 
 
-data5.columns=['도시','연도','날씨'] ; data5 #도시 연도 날씨로 바꿔라
+data5.columns=['도시','연도','날씨'] ; # data5 # 도시 연도 날씨로 바꿔라
 
-#data['city']
+#data['city'] # 바뀌었기때문에 출력 불가
 
-data5['도시']
+data5['도시'] # 바꾼값 출력 가능
 
 data5[['도시','날씨']]
 
@@ -63,10 +63,10 @@ data5.loc['기린'] #index 이름으로 접근한다 .loc
  
 data5.loc[5.2]
 
-data5.set_index('도시') #set_index원본을 바꾸진않고 바꾼 상태를 일시적으로 보여줌(미리보기) 
+data5.set_index('도시') # set_index원본을 바꾸진않고 바꾼 상태를 일시적으로 보여줌(미리보기) 
 data5
 
-data8=data5.set_index('도시'); data8
+data8=data5.set_index('도시'); data8 # 도시에 있는 값들을 index로 설정하는것을 data8에 저장
 data5.set_index('도시',inplace=True); data5 #inplace=True 원본을 바꿔줌(실제 바꿈)
 
 data5.loc['대전']
@@ -77,18 +77,20 @@ cars =[50,40,20,30,10]
 data5['car'] = cars #car데이터로 추가해라
 data5
 
-data5['hight1'] = data5.car >=30 #hight1를 추가해되 30보다 클 시 true아니면 false
+data5['hight1'] = data5.car >=30 # hight1를 추가해되 30보다 클 시 true아니면 false
 data5
 
 data5['hight2'] = data5.car>=40; data5 
 
-data5.drop('hight1',axis=1) # 열단위로 삭제해라(실제 삭제안됨) drop
+data5.drop('hight1',axis=1) # 열단위로 삭제해라(실제 삭제안됨) drop, axis=0(에러), axis x (에러)
 data5 
 
-a=data5.drop('hight2',axis=1) #삭제하는 방식을 a에 저장
+a=data5.drop('hight2',axis=1) # 삭제하는 방식을 a에 저장
 
 data5.drop('hight1',axis=1,inplace=True) #실제로 삭제해라 inplace=True
 data5
 
-data5.drop('대구',axis=0,inplace=True) # 대구 행이 사라짐
+data5.drop('대구',axis=0,inplace=True) # 대구 idex 행이 사라짐
 data5
+
+
