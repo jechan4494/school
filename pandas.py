@@ -98,127 +98,138 @@ data5
 import pandas as pd
 import numpy as np
 
-b = pd.Series([1,2,3],index =['a','b','c'])
+# pandas 및 numpy 라이브러리 임포트
+b = pd.Series([1, 2, 3], index=['a', 'b', 'c'])  # 시리즈 생성
 print(b)
+
 
 # 행에서 최대값 - 최솟값
 def f1(x):
-    k=x.max() - x.min() 
+    k = x.max() - x.min()
     return k
     
 def f2(x):
     return x.max() - x.min()
 
-f3 = lambda x: x.max() - x.min() # f3 : 함수 이름 , x : 매개변수 , x.max() - x.min():함수내용
+f3 = lambda x: x.max() - x.min()  # f3 : 함수 이름 , x : 매개변수 , x.max() - x.min():함수내용
 #f1 == f2 == f3
 
-df = pd.DataFrame(np.arange(12).reshape(4,3), # arange() 1차원으로 만들어라 reshape() 2차원 배열의 형태를 바꿔라 4행3열
-                  columns=['A열','B열','C열'],
-                  index=['a','b','c','d'])
+# 데이터프레임 생성
+df = pd.DataFrame(np.arange(12).reshape(4, 3),  # arange() 1차원으로 만들어라 reshape() 2차원 배열의 형태를 바꿔라 4행3열
+                  columns=['A열', 'B열', 'C열'],
+                  index=['a', 'b', 'c', 'd'])
 df
 
-df.apply(f2) # 행기준 (기본은 열기준)
+# 함수를 데이터프레임에 적용
+df.apply(f2)  # 열(기본 동작)을 기준으로 f2 함수 적용
 
-df.apply(f3,0) # 행기준 
+df.apply(f3, 0)  # 행을 기준으로 f3 함수 적용
 
-df.apply(f3,1) # 열기준
+df.apply(f3, 1)  # 열을 기준으로 f3 함수 적용
 
-frame = DataFrame(np.arange(8).reshape(2,4),
-                  index=['three','one'],
-                  columns=['d','a','가','c'])
-frame
+# 다른 데이터프레임 생성
+frame = pd.DataFrame(np.arange(8).reshape(2, 4),
+                     index=['three', 'one'],
+                     columns=['d', 'a', '가', 'c'])
+# 데이터프레임 정렬
+frame.sort_index()  # 인덱스를 기준으로 오름차순 정렬
+frame.sort_index(axis=0)  # 행(인덱스)을 기준으로 오름차순 정렬
+frame.sort_index(axis=1)  # 열 이름을 기준으로 오름차순 정렬
+frame.sort_index(axis=1, ascending=False)  # 열 이름을 기준으로 내림차순 정렬
+frame.sort_index(axis=1, ascending=False, inplace=True)  # 열 이름을 기준으로 내림차순으로 정렬하고 기존 데이터프레임을 변경
 
-frame.sort_index() # sort_index index를 오름차순으로 정렬
-frame2 = frame.sort_index(axis=0) # key값 정렬 행기준 
-frame2
+# 값에 따라 데이터프레임 정렬
+frame.sort_values(by='가', ascending=False)  # '가' 열의 값에 따라 내림차순으로 정렬
 
-frame.sort_index(axis=1) # key값 정렬 열기준
+# 다른 데이터프레임 생성
+frame2 = pd.DataFrame({'b': [4, 7, 3, 2], 'a': [4, 9, 2, 5], 'c': [5, 3, 7, 9]})
 
-frame.sort_index(axis=1,ascending=False)
-
-frame.sort_index(axis=1,ascending=False,inplace=True)
-frame # inplace를 실행시 기본값 변경 데이터 frame 입력
-
-frame.sort_values(by='가',ascending=False)
-
-frame2=DataFrame({'b':[4,7,3,2],'a':[4,9,2,5],'c':[5,3,7,9]})
-frame2
-
+# 'b' 열을 기준으로 정렬
 frame2.sort_values(by='b')
 
+# 'a' 열을 기준으로 정렬
 frame2.sort_values(by='a')
 
-frame2.sort_values(by=['b','c'])
+# 'b'와 'c' 열을 기준으로 정렬
+frame2.sort_values(by=['b', 'c'])
 
 #######################################
+obj = Series([100, 23, 55, 44, 22, 99, 33])  # 시리즈 생성
+obj
 
-obj =Series([100,23,55,44,22,99,33]); obj
+obj.rank()  # 기본적으로는 오름차순으로 순위 매기기
 
-obj.rank()
+obj.rank(ascending=False)  # 내림차순으로 순위 매기기
 
-obj.rank(ascending=False)
+obj2 = Series([100, 23, 55, 44, 22, 44, 33])  # 시리즈 생성
+obj2.rank()  # 기본적으로는 오름차순으로 순위 매기기
 
-obj2=Series([100,23,55,44,22,44,33]);obj
-obj2.rank()
+obj3 = Series([100, 23, 55, 44, 22, 44, 33, 44])  # 시리즈 생성
+obj3.rank()  # 기본적으로는 오름차순으로 순위 매기기
 
-obj3=Series([100,23,55,44,22,44,33,44]);obj
-obj3.rank()
+obj3.rank(method="min")  # 동일한 값들 중 첫 번째 값으로 순위 부여
 
-obj3.rank(method="min") # 똑같은 값들중 첫 값으로 등수를 통일
+obj3.rank(method="max")  # 동일한 값들 중 마지막 값으로 순위 부여
 
-obj3.rank(method="max") # 똑같은 값들중 마지막 등수로 통일
+obj3.rank(method="first")  # 동일한 값들의 순서대로 순위 부여
 
-obj3.rank(method="first") # 똑같은값 순차적으로 등수
-
-frame3 = DataFrame({'b':[4,4,4,2], 'a':[4,9,2,5], 'c' : [5,3,7,9]})
+frame3 = DataFrame({'b':[4, 4, 4, 2], 'a':[4, 9, 2, 5], 'c': [5, 3, 7, 9]})
 frame3
 
-frame3.rank() # () = (axis=0)
+frame3.rank()  # () = (axis=0) 열을 기준으로 순위 매기기
 
-frame3.rank(1) # (1) = (axis=1)
+frame3.rank(1)  # (1) = (axis=1) 행을 기준으로 순위 매기기
 
-frame3.sum() # () = (axis=0) 합
+frame3.sum()  # () = (axis=0) 합 구하기
 
-frame3.sum(1) # (1) = (axis=1) 합
+frame3.sum(1)  # (1) = (axis=1) 합 구하기
 
-frame3.mean() # (0) = (axis=0) 평균
+frame3.mean()  # (0) = (axis=0) 평균 구하기
 
-frame3.mean(1) # (0) = (axis=1) 평균
+frame3.mean(1)  # (0) = (axis=1) 평균 구하기
 
-frame4 = DataFrame({'b':[4,4,4,2], 'a':[4,9,2,5], 'c' : [5,3,7,np.nan]})
+
+frame4 = DataFrame({'b':[4, 4, 4, 2], 'a':[4, 9, 2, 5], 'c': [5, 3, 7, np.nan]})
 frame4
 
-frame4.rank()
+frame4.rank()  # 기본적으로는 오름차순으로 순위 매기기
 
-frame4.sum()
+frame4.sum()  # 기본적으로는 열을 기준으로 합 구하기 (axis=0)
 
-frame4.mean()
+frame4.mean()  # 기본적으로는 열을 기준으로 평균 구하기 (axis=0)
 
-frame4.sum(skipna=False)
+frame4.sum(skipna=False)  # NaN을 고려하지 않고 합 구하기
 
-cl= frame4.dropna();cl #nan이 있는 행이 사라짐
+cl = frame4.dropna()  # NaN이 있는 행 제거
+cl
 
-cl=frame4.dropna(axis=0);cl #nan이 있는 행이 사라짐
+cl = frame4.dropna(axis=0)  # NaN이 있는 행 제거
+cl
 
-cl=frame4.dropna(axis=1);cl #nan이 있는 열이 사라짐
+cl = frame4.dropna(axis=1)  # NaN이 있는 열 제거
+cl
 
-result = frame4.fillna(77); result # nan이 있는곳을 77로 채움
+result = frame4.fillna(77)  # NaN을 77로 채우기
+result
 
-frame4.idxmax(1) # 열기준에서 최대값
+frame4.idxmax(1)  # 행을 기준으로 최대값의 위치 찾기
 
-frame4.idxmax(0) # 행기준에서 최대값
+frame4.idxmax(0)  # 열을 기준으로 최대값의 위치 찾기
 
-frame4.idxmin(1)  # 열기준에서 최소값
+frame4.idxmin(1)  # 행을 기준으로 최소값의 위치 찾기
 
-frame5 = DataFrame([[NA,6.5,3.],[NA,NA,NA],[NA,6.5,3]])
+
+frame5 = DataFrame([[NA, 6.5, 3.], [NA, NA, NA], [NA, 6.5, 3.]])
 frame5             
 
-cl= frame5.dropna(axis=1);cl #
+cl = frame5.dropna(axis=1)  # NaN이 없는 열만 남기기
+cl
 
-cl= frame5.dropna(axis=1,how='all');cl # 모두 nan인것만 지움 열기준
+cl = frame5.dropna(axis=1, how='all')  # 모든 값이 NaN인 열만 제거
+cl
 
-cl= frame5.dropna(axis=0,how='all');cl
+cl = frame5.dropna(axis=0, how='all')  # 모든 값이 NaN인 행만 제거
+cl
 
-result= frame5.fillna(0); result #nan열을 0으로 채움
-
-
+result = frame5.fillna(0)  # NaN을 0으로 채우기
+result
