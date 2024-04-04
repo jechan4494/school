@@ -148,6 +148,8 @@ frame2.sort_values(by='b')
 
 frame2.sort_values(by='a')
 
+frame2.sort_values(by=['b','c'])
+
 #######################################
 
 obj =Series([100,23,55,44,22,99,33]); obj
@@ -157,4 +159,66 @@ obj.rank()
 obj.rank(ascending=False)
 
 obj2=Series([100,23,55,44,22,44,33]);obj
+obj2.rank()
+
+obj3=Series([100,23,55,44,22,44,33,44]);obj
+obj3.rank()
+
+obj3.rank(method="min") # 똑같은 값들중 첫 값으로 등수를 통일
+
+obj3.rank(method="max") # 똑같은 값들중 마지막 등수로 통일
+
+obj3.rank(method="first") # 똑같은값 순차적으로 등수
+
+frame3 = DataFrame({'b':[4,4,4,2], 'a':[4,9,2,5], 'c' : [5,3,7,9]})
+frame3
+
+frame3.rank() # () = (axis=0)
+
+frame3.rank(1) # (1) = (axis=1)
+
+frame3.sum() # () = (axis=0) 합
+
+frame3.sum(1) # (1) = (axis=1) 합
+
+frame3.mean() # (0) = (axis=0) 평균
+
+frame3.mean(1) # (0) = (axis=1) 평균
+
+frame4 = DataFrame({'b':[4,4,4,2], 'a':[4,9,2,5], 'c' : [5,3,7,np.nan]})
+frame4
+
+frame4.rank()
+
+frame4.sum()
+
+frame4.mean()
+
+frame4.sum(skipna=False)
+
+cl= frame4.dropna();cl #nan이 있는 행이 사라짐
+
+cl=frame4.dropna(axis=0);cl #nan이 있는 행이 사라짐
+
+cl=frame4.dropna(axis=1);cl #nan이 있는 열이 사라짐
+
+result = frame4.fillna(77); result # nan이 있는곳을 77로 채움
+
+frame4.idxmax(1) # 열기준에서 최대값
+
+frame4.idxmax(0) # 행기준에서 최대값
+
+frame4.idxmin(1)  # 열기준에서 최소값
+
+frame5 = DataFrame([[NA,6.5,3.],[NA,NA,NA],[NA,6.5,3]])
+frame5             
+
+cl= frame5.dropna(axis=1);cl #
+
+cl= frame5.dropna(axis=1,how='all');cl # 모두 nan인것만 지움 열기준
+
+cl= frame5.dropna(axis=0,how='all');cl
+
+result= frame5.fillna(0); result #nan열을 0으로 채움
+
 
