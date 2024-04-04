@@ -38,15 +38,15 @@ using namespace std;
 
 int main() {
 
-	int evr = 0; // 평균 변수
+	int avr = 0; // 평균 변수
 	
 	int* p = new int[5]; // 동적 메모리 할
 	cout << "정수 5개 입력";
 	for(int i=0; i<5; i++){
 		cin >> p[i];  // 정수 5개를 입력받음
-		evr += p[i];  //평균 변수에 정수를 다 더함
+		avr += p[i];  //평균 변수에 정수를 다 더함
 	}
-	cout << "평균" << evr / 5;
+	cout << "평균" << avr / 5;
 }
 
 // 3번  ///////////////////////////////////////////////////////
@@ -569,4 +569,107 @@ int main() {
     CoffeeMachine r; // CoffeeMachine 객체 생성
     r.run(); // 자판기 작동 메서드 호출
     return 0; // 프로그램 종료
+}
+
+// 12번 //////////////////////////////////////////////
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Circle {
+
+	int radius;
+	string name;
+
+public:
+	
+	Circle();
+	void setRadius(string name,int radius);
+	double getArea();
+	string getName();
+};
+
+class CircleManager {
+	Circle* p;
+	int size;
+public:
+	CircleManager(int size);
+	~CircleManager();
+	void searchByName();
+	void searchByArea();
+
+};
+
+Circle::Circle() { };
+
+void Circle::setRadius(string name, int radius) {
+	this->name = name;
+	this->radius=radius;
+}
+double Circle::getArea() {
+	return 3.14 * radius * radius;
+}
+string Circle::getName() {
+	return name;
+}
+CircleManager::CircleManager(int size) {
+	p = new Circle[size];
+	this->size = size;
+	int radius; string name;
+	for (int i = 0; i < size; i++) {
+		cout << "원" << i + 1 << "의 이름과 반지름>>";
+		cin >> name >> radius; p[i].setRadius(name, radius);
+	}
+}
+CircleManager::~CircleManager() {
+	delete[] p;
+}
+void CircleManager::searchByName() {
+	string name;
+	cout << "검색하고자 하는 원의 이름>>";
+	cin >> name;
+	for(int i=0; i<size; i++){
+		if (name == p[i].getName()) {
+			cout << name << "의 면적은" << p[i].getArea();
+			return;
+		}
+	}
+	cout << name << "은 찾을 수 없습니다";
+}
+void CircleManager::searchByArea() {
+	int area;
+	int count=0;
+
+	cout << "최소 면적을 정수로 입력하세요 : ";
+	cin >> area;
+	cout << area << "보다 큰 원을 검색합니다.";
+	for (int i = 0; i < size; i++) {
+		if (area < p[i].getArea()) {
+			cout << p[i].getName() << "의 면적은" << p[i].getArea() << ",";
+			count++;
+		}
+	}
+	if (count == 0) {
+		cout << "area보다 큰 원은 없습니다." << endl;
+	}
+}
+
+int main() {
+
+	CircleManager* pM;
+	int size;
+	cout << "원의 개수를 입력하세요:";
+	cin >> size;
+	if (size <= 0) {
+		cout << "양수를 입력하세요.";
+		return 0;
+	}
+
+	pM = new CircleManager(size);
+	pM->searchByArea();
+	pM->searchByName();
+
+	delete pM;
 }
