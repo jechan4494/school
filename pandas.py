@@ -233,3 +233,23 @@ cl
 
 result = frame5.fillna(0)  # NaN을 0으로 채우기
 result
+
+obj3 = Series(['c','a','d','a','a','c','b','b','c','c']);obj3
+
+obj3.to_csv('./file2.csv',header=True,index=False,encoding='utf-8')
+df2=pd.read_csv('./file2.csv',sep=',')
+df2
+
+obj3.unique() # 중복 한번만 출력
+
+obj3.value_counts() # 해당 valus : 개수 (정렬 x)
+
+obj3.value_counts(sort=False)  # (정렬 x)
+
+obj3.isin(['b']) # b랑 같은것이 있을시 ture
+
+obj.isin(['b','c']) # b와 c만 ture
+
+mask = obj3.isin(['b','c']);mask #b와c만 있는값만 배열로 취급
+
+obj3[mask]
