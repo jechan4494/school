@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+class CoffeMachine {
+
+	int cafe, water, sugar; // 커피,물,설탕을 나타내는 멤버변수
+public:
+	//생성자
+	CoffeMachine(int c, int w, int s); //초기 커피머신 상태 설정
+	void drinkEspresso(); //에스프레소 생성자
+	void show(); // 커피머신상태 생성자
+	void drinkAmericano(); //아메리카노 생성자
+	void drinkSugarCoffe(); //설탕커피 생성자
+	void fill(); //머신 채우기 생성자
+
+};
+
+CoffeMachine::CoffeMachine(int c,int w,int s) { //생성자 정의(멤버변수 초기화)
+	cafe = c, water = w, sugar = s;
+}
+
+void CoffeMachine::drinkEspresso() { // 에스프레소 커피 1감소, 물 1감소 (수정)
+	cafe--;
+	water--;
+}
+void CoffeMachine::drinkAmericano() { // 아메리카노 커피1 감소, 물 2감소 (수정)
+	cafe--;
+	water -= 2;
+}
+void CoffeMachine::drinkSugarCoffe() { // 설탕커피 커피 1감소, 물 2감소, 설탕 1감소 (수정)
+	cafe--;
+	water -= 2;
+	sugar--;
+}
+void CoffeMachine::fill() { // 머신 채우기 커피,물,설탕 전부 10 (수정)
+	cafe = 10;
+	water = 10;
+	sugar = 10;
+}
+void CoffeMachine::show() { // 머신 상태 출력 (수정)
+	cout << "커피 머신 상태 출력 커피 : " << cafe << " 물 : " << water << " 설탕 : " << sugar << endl;
+}
+
+int main() {
+	CoffeMachine java(5, 10, 3);
+	java.drinkEspresso();
+	java.show();
+	java.drinkAmericano();
+	java.show();
+	java.drinkSugarCoffe();
+	java.show();
+	java.fill();
+	java.show();
+}
