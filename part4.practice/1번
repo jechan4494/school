@@ -32,54 +32,7 @@ int main() {
 
 
 
-// 4번  ///////////////////////////////////////////////////////
 
-#include <iostream>
-#include <algorithm>
-using namespace std;
-
-class Sample {
-	int* p;
-	int size;
-public:
-	Sample(int n) {
-		size = n; p = new int [n]; // 동적 메모리 할당
-	}
-	void read(); 
-	void write();
-	int big();
-	~Sample();
-};
-void Sample::read() {
-	for (int i = 0; i <10; i++) {
-		cin >> p[i]; // 정수 10개를 입력받음
-	}
-}
-void Sample::write() {
-	for (int i = 0; i < 10; i++) {
-		cout << p[i] << " "; 
-	}
-}
-int Sample::big() {
-	int m = -500; // 낮은값 -500으로 기본 맥스값 설정
-	for (int i = 0; i < 10; i++) {
-	m = std::max(p[i], m); //10번을 반복하며 큰값 반환해주는 라이브러리함수 #include <algorithm> 사용
-	}
-	return m;
-}
-
-Sample::~Sample() {
-	delete[] p; // 동적메모리 반환
-}
-
-
-int main() {
-	Sample s(10);
-	s.read();
-	s.write();
-
-	cout << "가장 큰 수는 ", s.big();
-}
 
 // 5번  ///////////////////////////////////////////////////////
 
