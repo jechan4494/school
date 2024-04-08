@@ -35,7 +35,7 @@ int main() {
 #include <string>
 using namespace std;
 
-/*class Date { //구현부
+class Date { //구현부
 	int year, month, day;
 
 public:
