@@ -1,0 +1,107 @@
+#include <iostream> // 표준 입출력 라이브러리 포함
+#include <string> // 문자열 라이브러리 포함
+
+using namespace std; // std 네임스페이스 사용
+
+class Person { // Person 클래스 정의
+
+    string name; // 이름 멤버 변수
+    string tel; // 전화번호 멤버 변수
+
+public:
+    // 기본 생성자 선언
+    Person();
+    
+    // 이름을 반환하는 메서드 선언
+    string getName() {
+        return name;
+    }
+
+    // 전화번호를 반환하는 메서드 선언
+    string getTel() {
+        return tel;
+    }
+
+    // 이름과 전화번호를 설정하는 메서드 선언
+    void set(string name, string tel);
+};
+
+#endif // PERSON_H 종료
+
+#include <iostream> 
+#include <string> 
+
+using namespace std; 
+
+class Person {
+	string name; 
+public:
+	// 기본 생성자
+	Person();
+	// 이름을 받는 생성자
+	Person(string name) {
+		this->name = name;
+	}
+	// 이름을 반환하는 메서드
+	string getName() {
+		return name;
+	}
+	// 이름을 설정하는 메서드
+	void setName(string name) {
+		this->name = name;
+	}
+};
+
+class Family {
+	Person* p; 
+	int size; // 배열 크기
+	string name; // 가족 이름
+public:
+	// 생성자
+	Family(string name, int size);
+	// 소멸자
+	~Family();
+
+	// 가족 구성원의 이름 설정 메서드
+	void setName(int index, string name) {
+		p[index].setName(name);
+	}
+
+	// 가족 정보 출력 메서드
+	void show();
+};
+
+// 생성자 정의
+Family::Family(string name, int size) {
+	this->name = name; // 가족 이름 설정
+	this->size = size; // 배열 크기 설정
+	p = new Person[size]; // 가족 구성원 배열 동적 할당
+}
+
+// 소멸자 정의
+Family::~Family() {
+	delete[] p; // 배열 메모리 해제
+}
+
+// 가족 정보 출력 메서드 정의
+void Family::show() {
+	cout << name << " 가족은 다음과 같이 " << size << "명 입니다.\n"; // 가족 이름과 구성원 수 출력
+	for (int i = 0; i < size; i++) {
+		cout << p[i].getName() << " "; // 각 구성원의 이름 출력
+	}
+	cout << endl;
+}
+
+// 메인 함수
+int main() {
+	Family* simpson = new Family("Simpson", 3); // "Simpson" 가족 동적메모리 생성
+
+	simpson->setName(0, "Simpson"); // 첫 번째 구성원 이름 설정
+	simpson->setName(1, "Simpson2"); // 두 번째 구성원 이름 설정
+	simpson->setName(2, "Simpson3"); // 세 번째 구성원 이름 설정
+
+	simpson->show(); // 가족 정보 출력
+
+	delete simpson; // 가족 객체 메모리 반환
+	return 0; // 프로그램 종료
+}
