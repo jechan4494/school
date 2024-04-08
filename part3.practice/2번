@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Date { //구현부
+	int year, month, day;
+
+public:
+	Date(int y, int m, int d);
+	Date(string s);
+	void show();
+	int getYear() { return year; }
+	int getMonth() { return month;}
+	int getDay() { return day; }
+};
+
+//실현부
+
+Date::Date(int y, int m, int d) {
+
+	year = y, month = m, day = d;
+}
+Date::Date(string s) {
+	int index1 = s.find("/"); // /이 들어간 자리의 인덱스값을 넣는다(4)
+	string y = s.substr(0, index1); //0부터4까지를 y에 넣음 index1은 1~4이기에 값이4개
+	int index2 = s.find("/", index1 + 1); //index1이후에 /이 들어간 자리에 인덱스자리 값을 넣는다(7)
+	string m = s.substr(index1 + 1, index2 - index1 - 1); // index+1(7)에서 시작해서 index1(4)자리를 빼고 -1(/)를 한번 더 빼서 월자리를 구함
+	string d = s.substr(index2 + 1, s.length()); //length 문자열의 길이를 반환하는 함수 index2+1부터 전체 길이까지 반환
+	year = stoi(y); month = stoi(m); day = stoi(d); // stoi()문자열을 정수로 반환해주는 함수
+
+
+}
+void Date::show() {
+	cout << year << "년" << month << "월" << day << "일" << endl; //년 월 일을 출력
+}
+
+int main() { 
+	Date birth(2024, 3, 20);
+	Date independenceDay("1945/8/15");
+	independenceDay.show();
+	cout << birth.getYear() << ',' << birth.getMonth() << ',' << birth.getDay() << endl;
+}
+
+class Date {
+
+	int year, month, day;
+public:
+
+	Date(int y,int m,int d);
+	Date(string s);
+	void show();
+	int getYear() {
+		return year;
+	}
+	int getMonth(){
+		return month;
+	}
+	int getday() {
+
+	}
+	Date::Date() {
+
+	}
+};
