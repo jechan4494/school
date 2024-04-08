@@ -31,25 +31,6 @@ int main() {
 }
 
 
-// 3번  ///////////////////////////////////////////////////////
-
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main() {
-
-	string s;
-	cout << "문자열을 입력 >>";
-	getline(cin, s, '\n'); // 문자열 입력받는 함수
-
-	int num = 0;
-	for (int i = 0; i < s.length(); i++) { // 문자열 길이까지 반복
-		if (s[i] == 'a') // a가 있으면 더하기
-			num++;
-	}
-	cout << "문자 a는 " << num << "개 있습니다."; 
-}
 
 // 4번  ///////////////////////////////////////////////////////
 
