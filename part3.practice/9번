@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+class Oval {
+	
+public:
+
+	int width, height; // 너비와 높이 멤버변수
+	
+	Oval();//생성자 
+	~Oval(); //소멸자
+	Oval(int w, int h); //너비와 높이를 재정의
+	int getWidth(); //너비를 반환하는 함수
+	int getHeight(); //높이를 반환하는 함수
+	void set(int w, int h); //너비와 높이를 설정하는 함수
+	void show(); //너비와 높이를 출력하는 함수
+	
+};
+//기본 생성자
+Oval::Oval() { 
+}
+//너비와 높이 설정하는 생성자
+Oval::Oval(int w, int h) {
+	width = w;
+	height = h;
+}
+//소멸자 정의
+Oval::~Oval() {
+	cout << "Oval 소멸 width : " << width << "height : " << height << endl;
+}
+//높이를 반환하는 함수 정의
+int Oval::getHeight() {
+	return height;
+}
+//너비를 반환하는 함수 정의
+int Oval::getWidth() {
+	return width;
+}
+//너비와 높이를 설정하는 함수 정의
+void Oval::set(int w, int h) {
+	width = w;
+	height = h;
+}
+//너비와 높이를 출력하는 함수 정의
+void Oval::show() {
+	cout << width << "," << height << endl;
+}
