@@ -455,15 +455,15 @@ int main() {
 			a.setValue(x, y);
 			cout << a.calculate() << endl;
 		}
-		else if (x == '-') {
+		else if (c == '-') {
 			s.setValue(x, y);
 			cout << s.calculate() << endl;
 		}
-		else if (x == '*') {
+		else if (c == '*') {
 			m.setValue(x, y);
 			cout << m.calculate() << endl;
 		}
-		else if (x == '/') {
+		else if (c == '/') {
 			d.setValue(x, y);
 			cout << d.calcualte() << endl;
 		}
