@@ -72,3 +72,33 @@ Person::Person() {
 #pragma once // 중복 포함 방지를 위한 pragma once 지시문
 #ifndef PERSON_H // ifndef 지시문으로 PERSON_H 심볼이 정의되지 않았을 때만 아래 코드를 처리
 #define PERSON_H // PERSON_H 심볼 정의
+
+#include <iostream> // 표준 입출력 라이브러리 포함
+#include <string> // 문자열 라이브러리 포함
+
+using namespace std; // std 네임스페이스 사용
+
+class Person { // Person 클래스 정의
+
+    string name; // 이름 멤버 변수
+    string tel; // 전화번호 멤버 변수
+
+public:
+    // 기본 생성자 선언
+    Person();
+    
+    // 이름을 반환하는 메서드 선언
+    string getName() {
+        return name;
+    }
+
+    // 전화번호를 반환하는 메서드 선언
+    string getTel() {
+        return tel;
+    }
+
+    // 이름과 전화번호를 설정하는 메서드 선언
+    void set(string name, string tel);
+};
+
+#endif // PERSON_H 종료
