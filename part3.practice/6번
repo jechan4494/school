@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cstdlib> // rand 함수 사용을 위한 헤더 파일
+#include <ctime> // 시드 설정을 위한 헤더 파일
+using namespace std;
+
+class EvenRandom {
+	int start; //시작을 저장할 멤버변수
+	int end; 
+
+public:
+	EvenRandom(); //기본 생성자
+
+	int next(); //다음 짝수를 위한 멤버 함수
+	int nextInRange(int start, int end);//주어진 범위의 짝수를 위한 멤버 함수
+
+};
+
+EvenRandom::EvenRandom() {
+	srand((unsigned int)time(NULL)); //시간에 따른 프로그래밍실시마다 다른변수를 위한 발생기 초기화
+	start = 0; //시작값을 설정하는 변수
+	end = RAND_MAX; //끝자리수를 RAND_MAX치로 설정 32767
+}
+int EvenRandom::next() {
+	while (true) { //true일시 무한루프
+		int num = rand() % (RAND_MAX + 1); //0부터 MAX까지 난수 생성
+		if (num % 2 == 0) { //짝수인지 확인
+			return num; //맞을시 리턴
+		}
+	}
+}
