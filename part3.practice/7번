@@ -1,0 +1,40 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+int start,end; //범위 시작값,끝값
+
+class EvenRandom{
+
+public:
+	EvenRandom(); //기본생성자 정의
+	int next(int result); //다음 짝수를 위한 멤버함수
+	int nextInRange(int result,int start,int end); //주어진 범위에서 짝수를 반환하는 멤버함수
+}
+EvenRandom::EvenRandom() {
+	srand((unsigned)(time)(NULL)); //시간을 기반으로 발생기 초기화
+}
+
+int EvenRandom::next(int num) {
+		
+	int num1;
+	while (true) {
+		int rad = rand(); //0부터 RAND_MAX사이의 난수 생성
+		if (rad == num) {//생성된 난수가 num과 같으면 리턴
+			return num;
+		}
+	}
+}
+
+int EvenRandom::nextInRange(int num, int start, int end) {
+	int result;
+	while (true) {
+		result = rand() % (end - start + 1) + start; // start와 end값 사이의 난수 생성
+
+		if (result % 2 == num) { //리턴된 난수가 결과와 같을시 리턴
+			return result;
+		}
+	}
+}
