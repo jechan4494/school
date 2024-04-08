@@ -17,3 +17,52 @@ public:
 };
 
 #endif 
+
+//circle.cpp
+
+#include "circle.h"
+#include <iostream>
+
+using namespace std;
+
+void Circle::setRadius(int radius) {
+	this-> radius = radius; // Circle 객체의 반지름 멤버 변수를 설정한다.
+}
+void Circle::setCircle(string name, int radius) {
+	this->name = name; this->radius = radius;
+}
+double Circle::getArea() {
+	return 3.14 * radius * radius;
+}
+string Circle::getName() {
+	return name;
+}
+
+#include <iostream>
+#include "circle.h"
+
+using namespace std;
+
+int main() {
+
+	Circle* p;
+	int size; int count = 0;
+	cout << "원의 개수>>"; 
+	cin >> size;
+	if (size < 1)
+		return 0;
+
+	p = new Circle[size];
+	int radius;
+	for (int i = 0; i < size; i++) {
+		cout << "원" << i + 1 << "의 반지름>>"; 
+		cin >> radius; p[i].setRadius(radius);
+	}
+	for (int i = 0; i < size; i++) {
+		if (p[i].getArea() > 100) {
+			count++;
+		}
+	}
+	cout << "면적이 100보다 큰 원은" << count << "개 입니다.";
+	delete[] p;
+}
