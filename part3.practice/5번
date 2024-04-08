@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+class Random {
+
+public:
+	int num1, num2;
+	int next();
+	int nextInRange(int num1, int num2);
+
+};
+
+Random::Random() {
+	srand((unsigned int)time(NULL));
+	num1 = 0;
+	num2 = RAND_MAX; //0부터 MAX값까지 범위를 정하는 함수
+}
+int Random::next() {
+	return rand() % (RAND_MAX + 1); //0부터 MAX까지 난수 생성
+}
+
+int Random::nextInRange(int num1,int num2) {
+
+	return rand() % (num2 - num1 + 1) + num1;
+}
+int main() {
+
+}
