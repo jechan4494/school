@@ -1,0 +1,19 @@
+//circle.h
+#ifndef CIRCLE_H 
+#define CIRCLE_H
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Circle{
+
+	int radius; string name;
+
+public:
+	double getArea(); string getName();
+	void setRadius(int radius);
+	void setCircle(string name, int radius);
+};
+
+#endif 
