@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Integer {
+
+	int number; //정수를 저장하는 함수
+public: 
+	int get(); //정수를 반환하는 함수 
+	bool isEven(); // 함수의 참값 또는 거짓값을 반환하는 함수
+	Integer(int n); //정수 초기화
+};
+Integer::Integer(int n) {
+	number = n;
+}
+
+inline int Integer::get() {
+	return number;
+}
+inline bool Integer::isEven() {
+	if (number % 2 == 0) //짝수일시 참값
+		return true;
+	else 
+		false;
+}
