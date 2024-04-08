@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+//구현부
+class Account {
+	
+	string name; // 멤버변수 주인 이름 
+	int id, balance; // 계좌번호,잔액
+public:
+//생성자
+	string getOnwer();
+	void deposit(int x); //저금
+	void withdraw(int x); //출금
+	int inquiry(); //잔액 조회
+
+	Account(string s, int id, int balance);
+};
+//생성자 정의
+Account::Account(string s, int i, int bal) {
+	name = s;
+	id = i;
+	balance = bal;
+}
+string Account::getOnwer() { //이름 반환 함수
+	return name;
+}
+//저금 함수
+void Account::deposit(int x) {
+	balance += x;
+}
+//출금 함수
+void Account::withdraw(int x) {
+	balance -= x;
+}
+//잔액 조회 함수
+int Account::inquiry() {
+	return balance;
+}
+
+int main() {
+	Account a("kitae", 1, 5000);
+	a.deposit(50000);
+	cout << a.getOnwer() << "의 잔액은" << a.inquiry() << endl;
+	a.withdraw(20000);
+	cout << a.getOnwer() << "의 잔액은" << a.inquiry() << endl;
+}
