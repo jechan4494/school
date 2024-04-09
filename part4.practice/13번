@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Histogram {
+
+	string str;
+	int alp[26] = { 0 };
+public:
+
+	Histogram(string str) {
+		this->str = str;
+	}
+	void put(string str2) {
+		this->str.append(str2);
+	}
+	void putc(char ch) {
+		this->str.append(1, ch);
+	}
+	void print();
+	void countAlp();
+	int total();
+};
+
+void Histogram::countAlp() {
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] >= 'A' && str[i] <= 'Z') {
+			int index = str[i] - 'A';
+			alp[index]++;
+		}
+		if (str[i] >= 'a' && str[i] <= 'z') {
+			int index = str[i] - 'a';
+			alp[index]++;
+		}
+	}
+}
+
+int Histogram::total() {
+	int total = 0;
+	for (int i = 0; i < str.length(); i++) {
+		if ((str[i] >= 'a' && str[i] < 'z') || (str[i] > 'A' && str[i] < 'Z'))
+			total++;
+	}
+	return total;
+}
+void Histogram::print() {
+	cout << str << endl;
+	cout << "총 알파벳 수" << total() << endl;
+
+	countAlp();
+	char ch = 'a';
+	while (ch <= 'z') {
+		cout << ch << "(" << alp[(int)ch - 'a'] << ")\t :";
+		for (int i = 0; i < alp[(int)ch - 'a']; i++) {
+			cout << "*";
+		}
+		cout << endl;
+		ch++;
+	}
+}
+
+int main() {
+	Histogram elvisHisto("Wise men say, only fools rush in But I can't help, ");
+	elvisHisto.put("falling in love with you");
+	elvisHisto.putc('-');
+	elvisHisto.put("Elvis Presley");
+	elvisHisto.print();
+
+	return 0;
+}
