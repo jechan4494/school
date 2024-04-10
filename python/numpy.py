@@ -27,10 +27,10 @@ print(r.random()) # 0~1사이
 print(r.randint(1,10)) # 1~10사이
 print(r.randrange(1,10)) # 1~9사이
 
-#a = np.random.ran(4,2)
-#print('\ndata 출력\n',a)
-#print('\n마스킹된 데이터 출력\n',a[mask])
-#print('\n마스킹 역전된 데이터 출력',a[~mask])
+a = np.random.rand(4,2)
+print('\ndata 출력\n',a)
+print('\n마스킹된 데이터 출력\n',a[mask])
+print('\n마스킹 역전된 데이터 출력',a[~mask])
 
 a =np.array([3,2,5,1,4])
 print('원본\n',a)
