@@ -150,7 +150,7 @@ data5
 data5.drop('hight1',axis=1) # 열단위로 삭제해라(실제 삭제안됨) drop, axis=0(에러), axis x (에러)
 data5 
 
-a=data5.drop('hight2',axis=1) # 삭제하는 방식을 a에 저장
+a=data5.drop('hight1',axis=1) # 삭제하는 방식을 a에 저장
 
 data5.drop('hight1',axis=1,inplace=True) #실제로 삭제해라 inplace=True
 data5
@@ -274,6 +274,7 @@ frame2.sort_values(by='b')
 frame2.sort_values(by='a')
 
 #	b	a	c
+
 # 2	3	2	7
 # 0	4	4	5
 # 3	2	5	9
@@ -289,7 +290,7 @@ frame2.sort_values(by=['b', 'c'])
 # 1	7	9	3
 
 #######################################
-obj = Series([100, 23, 55, 44, 22, 99, 33])  # 시리즈 생성
+obj = pd.Series([100, 23, 55, 44, 22, 99, 33])  # 시리즈 생성
 obj
 
 obj.rank()  # 기본적으로는 오름차순으로 순위 매기기
@@ -312,7 +313,7 @@ obj.rank(ascending=False)  # 내림차순으로 순위 매기기
 # 5    2.0
 # 6    5.0
 
-obj2 = Series([100, 23, 55, 44, 22, 44, 33])  # 시리즈 생성
+obj2 = pd.Series([100, 23, 55, 44, 22, 44, 33])  # 시리즈 생성
 obj2.rank()  # 기본적으로는 오름차순으로 순위 매기기
 
 # 0    7.0
@@ -323,7 +324,7 @@ obj2.rank()  # 기본적으로는 오름차순으로 순위 매기기
 # 5    4.5
 # 6    3.0
 
-obj3 = Series([100, 23, 55, 44, 22, 44, 33, 44])  # 시리즈 생성
+obj3 = pd.Series([100, 23, 55, 44, 22, 44, 33, 44])  # 시리즈 생성
 obj3.rank()  # 기본적으로는 오름차순으로 순위 매기기
 
 # 0    8.0
