@@ -1,0 +1,16 @@
+!pip install wikipedia
+
+!pip install wordcloud
+
+import wikipedia
+
+wiki = wikipedia.page('Artificial intelligence')
+text = wiki.content
+
+from wordcloud import WordCloud
+wordcloud =WordCloud(width = 2000,height = 1500).generate(text)
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10,5))
+plt.imshow(wordcloud)
+plt.show()
