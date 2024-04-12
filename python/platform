@@ -98,7 +98,7 @@ print(t)
 plt.plot(t,t,'r--', label="a")    
 plt.plot(t,0.5*t**2,'bs:', label="b") # 2차 함수  
 plt.plot(t,0.2*t**3,'g^-', label="c") # 3차 함수
-plt.legend(loc=0)
+plt.legend(loc=0) # 범례 위치를 나타냄
 
 np.random.seed(1)  # 랜덤 시드를 1로 설정합니다.
 
@@ -154,3 +154,28 @@ plt.show()  # 그래프를 화면에 출력합니다.
 
 df.plot(kind='bar', stacked=True)  # kind='bar'는 막대 그래프를 생성하며, stacked=True로 설정하여 값을 쌓습니다.
 plt.show()  # 그래프를 화면에 출력합니다.
+
+np.random.seed(10)
+data =np.random.randn(2,100)
+
+fig, axs = plt.subplots(2,2,figsize=(5,5))
+
+axs[0,0].hist(data[0])
+axs[1,0].scatter(data[0],data[1])
+axs[0,0].plot(data[0],data[1])
+axs[0,0].hist2d(data[0],data[1])
+
+plt.show()
+
+x=np.random.randint(1,7,1000)
+plt.hist(x,bins = 6,width=0.5) 
+
+times =[8,14,2]
+timelabels =["Sleep","Study","Play"]
+plt.pie(times,labels= timelabels,autopct="%.2f") # pie 원차트
+plt.savefig("a.png",dpi=600) # 600해상도로 저장해라
+plt.show()
+
+random_data = np.random.randn(100)
+plt.boxplot(random_data) 
+plt.show()
