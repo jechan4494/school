@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+class Circle {
+		int radius;
+public:
+	Circle();
+	Circle(int r);
+	void show();
+};
+
+#include "Circle.h"
+#pragma once
+
+Circle::Circle() {
+	radius = 1;
+}
+Circle::Circle(int r) {
+	this->radius = r;
+}
+void Circle::show() {
+	
+	cout << "반지름 >>" << radius << endl;
+}
+void swap(Circle& num1, Circle& num2) {
+	Circle temp;
+
+	temp = num1;
+	num1 = num2;
+	num2 = temp;
+}
+
+#include "Circle.h"
+
+int main() {
+
+	Circle num1(10), num2(20);
+	num1.show();
+	num2.show();
+
+	swap(num1, num2);
+	num1.show();
+	num2.show();
+
+	return 0;
+}
+
+
