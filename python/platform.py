@@ -177,5 +177,5 @@ plt.savefig("a.png",dpi=600) # 600해상도로 저장해라
 plt.show()
 
 random_data = np.random.randn(100)
-plt.boxplot(random_data) 
+plt.boxplot(random_data) # 이상치(무시해도 될 만하지만 무시할수없는값 3% 이하) - 최대값 - 중간값 1 - (75% 3사분기, 50% 2사분기 , 25% 1사분기) - 최소값 - 이상치 
 plt.show()
