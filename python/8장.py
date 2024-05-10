@@ -76,3 +76,25 @@ df['Data'] = pd.to_datetime(df['날짜'],format = '%Y%m%d') +\ # 데이터 열�
              pd. to_timedelta(df['시간'].astype(int),unit='h')
 df.set_index(df['Data'],inplace = True)
 df.head(3) 
+
+df1 = df[['수온(℃)','수위(el.m)','EC(㎲/㎝)']]
+df1.columns = ['temp','level','EC'] # 칼럼명 변경
+df1.head(3) 
+
+df1.isnull().sum() # null개수 구함
+
+df1.to_csv('./염쨩/대전지하수.csv',encoding='cp949') # 데이터폴더는 cp949고정
+
+df = pd.read_csv('./염쨩/대전지하수.csv',index_col = 'Data',
+                 parse_data=True,encoding = '949')
+df
+
+
+
+plt.subplot(1,3,1); df.boxplot(column = 'temp',return_type='both')
+plt.subplot(1,3,2); df.boxplot(column = 'temp',return_type='both')
+plt.subplot(1,3,3); df.boxplot(column = 'temp',return_type='both')
+plt.show()
+
+#IQR에 1.5배 멀어진 값은 이상치로 간주
+# 데이터 전처리 사용이유 - 쓸모없는 데이터 처리
