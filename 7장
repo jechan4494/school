@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Book {
+	string title; int price; int page;
+public:
+	Book(string title = "", int pirce = 0, int page = 0);
+	void show();
+	string getTitle() { return title; }
+	friend bool operator < (string title, Book book);
+	bool operator << (Book book);
+	Book& operator ++ ();
+	Book operator++(int x);
+};
+bool operator < (string title, Book book) {
+	if (title < book.title) return true;
+	else return false;
+}
+	Book& Book::operator++() {
+		page = page+2;
+		return *this;
+}
+	Book Book::operator++(int x) {
+		Book temp = *this;
+		page = page + 2;
+		return temp;
+	}
+
+int main() {
+	Book a("청춘", 20000, 300);
+	string b;
+	cout << "책 이름을 입력하세요>>";
+	getline(cin, b);
+	if (b < a) {
+		cout << a.getTitle() << "이" << "보다 뒤에 있구나! " << endl;
+	}
+	Book c(b);
+	if (c<<a)
+		cout<<a.getTitle() << "이" << "보다 뒤에 있구나! " << endl;
+	c++;
+	c.show();
+}
