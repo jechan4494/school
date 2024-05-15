@@ -5,26 +5,53 @@ df = pd.DataFrame({'A' : [1,2,np.nan,4,5],
                    'C' : [11,12,13,np.nan,np.nan]})
 df
 
-pd.isna(df)
+	A	B	C
+0	1.0	6.0	11.0
+1	2.0	7.0	12.0
+2	NaN	8.0	13.0
+3	4.0	NaN	NaN
+4	5.0	10.0	NaN
+
+pd.isna(df) # nan값을 true
+
+	A	B	C
+0	False	False	False
+1	False	False	False
+2	True	False	False
+3	False	True	True
+4	False	False	True
 
 pd.isna(df).sum() # nan의 합을 출력
 
-df_drop_nan = df.dropna()
+A    1
+B    1
+C    2
+
+df_drop_nan = df.dropna() # nan값이 있는 열을 지움
 df_drop_nan
 
-df_drop_B_C = df.dropna(subset=['B','C'])
+	A	B	C
+0	1.0	6.0	11.0
+1	2.0	7.0	12.0
+
+df_drop_B_C = df.dropna(subset=['B','C']) # B와 C의 nan값을 제거거
 df_drop_B_C
+
+A	B	C
+0	1.0	6.0	11.0
+1	2.0	7.0	12.0
+2	NaN	8.0	13.0
 
 pd.isna(df)
 
-df_0 = df['C'].fillna(0)
+df_0 = df['C'].fillna(0) # C행의 결측치를 0으로 바꿈
 print(df_0)
 
-df_missing = df['A'].fillna('missing')
+df_missing = df['A'].fillna('missing') # A행의 결측치를 missing으로 바꿈
 df_missing
 
 #df.fillna(df.mean(), inplace = True)
-df_mean = df.fillna(df.mean())
+df_mean = df.fillna(df.mean()) # 결측치를 평균으로 바꿈
 print(df,'\n')
 print(df_mean)
 
@@ -33,13 +60,40 @@ df_fill = df.fillna(method = 'ffill') # NAN값을 전 값으로 채움
 print(df_fill,'\n')
 
 df_bfill = df.fillna(method = 'bfill') # NAN값을 다음값으로 채움
-print(df_b)
+print(df_bfill)
 
 fill_dict = {'A':df['A'].mean(),'B':'12/25','C':'missing'} # NAN값을 A의 평균,12/25,MISSING으로 채움 
-df_filled= df.fillna(val)
+df_filled= df.fillna(fill_dict)
+
+	A	B	C
+0	1.0	6.0	11.0
+1	2.0	7.0	12.0
+2	3.0	8.0	13.0
+3	4.0	12/25	missing
+4	5.0	10.0	missing
 
 이상치를 제거하는것 박스플롯,IQR(분위수Q1 - 25, Q2 - 50, Q1- 1.5 * IQR = 최솟값, Q3 +1.5 * IQR = 최댓값
 
+
+#os.getcwd()
+#os.mkdir('test테스트')
+#os.chdir('test테스트')
+#os.getcwd()
+#with open("test.csv","w") as f:
+ #   f.write("aaaa,b,c,d,message \n")
+  #  f.write("aaa1,2,3,4,hello \n")
+#with open("test.csv","a") as f:
+
+    
+ #   f.write("aaaa,b,c,d,message \n")
+  #  f.write("aaa1,2,3,4,hello \n")
+#os.listdir()
+#os.rename('test.csv','new_one')
+#os.listdir()
+#os.remove('new_one')
+#os.listdir()
+#os.chdir('..')
+#os.getcwd()
 import os
 import numpy as np
 import pandas as pd
@@ -48,10 +102,17 @@ import warnings
 from datetime import *
 warnings.filterwarnings('ignore')
 
-path = './염쨩/' # 
+path = '/파일이름/' # 
 file_list = os.listdir(path) # 탐색기 
 file_list
-
+['대전태평(암반)_2009_hr.xlsx',
+ '대전태평(암반)_2010_hr.xlsx',
+ '대전태평(암반)_2011_hr.xlsx',
+ '대전태평(암반)_2012_hr.xlsx',
+ '대전태평(암반)_2013_hr.xlsx',
+ '대전태평(암반)_2014_hr.xlsx',
+ '대전태평(암반)_2015_hr.xlsx',
+ '대전태평(암반)_2016_hr.xlsx']
 file_list_py = [file for file in file_list if file.endswith('.xlsx')] # 엑셀 파일만 확인
 file_list_py
 
@@ -64,6 +125,19 @@ for i in file_list_py: #
     df = pd.concat([df,data]) # 빈공백에 한개씩 읽은 데이터 concat함 (이어붙힘)
 df
 
+관측소	구분	날짜	시간	수온(℃)	수위(el.m)	EC(㎲/㎝)
+0	대전태평	(암반)	20090101	0	16.1	44.47	749
+1	대전태평	(암반)	20090101	1	16.1	44.47	749
+2	대전태평	(암반)	20090101	2	16.1	44.47	749
+3	대전태평	(암반)	20090101	3	16.1	44.47	749
+4	대전태평	(암반)	20090101	4	16.1	44.47	749
+...	...	...	...	...	...	...	...
+8761	대전태평	(암반)	20161231	19	16.2	44.49	725
+8762	대전태평	(암반)	20161231	20	16.2	44.49	725
+8763	대전태평	(암반)	20161231	21	16.2	44.49	725
+8764	대전태평	(암반)	20161231	22	16.2	44.49	725
+8765	대전태평	(암반)	20161231	23	16.2	44.49	725
+
 df.head(3) # 데이터 앞에 3개만 보여줌
 
 df.tail() # 데이터 뒤에 5개만 보여줌
@@ -72,10 +146,24 @@ df = df.reset_index(drop = True) ;  df # 기존 인덱스를 열로 바꿔라
 
 df.info() # 어떤 값들로 이루어져있는지에 대한 정보
 
-df['Data'] = pd.to_datetime(df['날짜'],format = '%Y%m%d') +\ # 데이터 열을 만듬 판다스의 데이터 타입을 읽어들여서 Y M D 값과 
-             pd. to_timedelta(df['시간'].astype(int),unit='h')
-df.set_index(df['Data'],inplace = True)
-df.head(3) 
+# '날짜' 열을 'YYYYMMDD' 형식의 문자열에서 datetime 객체로 변환하고,
+# '시간' 열을 정수형 시간 값으로 변환한 후, 이를 시간 단위의 timedelta로 변환하여 더함
+# 결과적으로 '날짜'와 '시간'을 결합하여 새로운 'Data' 열을 생성함
+df['Data'] = pd.to_datetime(df['날짜'], format='%Y%m%d') + \
+             pd.to_timedelta(df['시간'].astype(int), unit='h')
+
+# 생성한 'Data' 열을 데이터프레임의 인덱스로 설정함
+# inplace=True로 설정하여 데이터프레임을 직접 수정함
+df.set_index(df['Data'], inplace=True)
+
+# 데이터프레임의 처음 3개 행을 출력함
+df.head(3)
+
+	관측소	구분	날짜	시간	수온(℃)	수위(el.m)	EC(㎲/㎝)	Data
+Data								
+2009-01-01 00:00:00	대전태평	(암반)	20090101	0	16.1	44.47	749	2009-01-01 00:00:00
+2009-01-01 01:00:00	대전태평	(암반)	20090101	1	16.1	44.47	749	2009-01-01 01:00:00
+2009-01-01 02:00:00	대전태평	(암반)	20090101	2	16.1	44.47	749	2009-01-01 02:00:00
 
 df1 = df[['수온(℃)','수위(el.m)','EC(㎲/㎝)']]
 df1.columns = ['temp','level','EC'] # 칼럼명 변경
@@ -83,11 +171,18 @@ df1.head(3)
 
 df1.isnull().sum() # null개수 구함
 
-df1.to_csv('./염쨩/대전지하수.csv',encoding='cp949') # 데이터폴더는 cp949고정
+df1.to_csv('./파일이름/대전지하수.csv',encoding='cp949') # 데이터폴더는 cp949고정 대전 지하수.csv파일을 저장하기
 
 df = pd.read_csv('./염쨩/대전지하수.csv',index_col = 'Data',
                  parse_data=True,encoding = '949')
-df
+df.head(4)
+
+	temp	level	EC
+Date			
+2009-01-01 00:00:00	16.1	44.47	749
+2009-01-01 01:00:00	16.1	44.47	749
+2009-01-01 02:00:00	16.1	44.47	749
+2009-01-01 03:00:00	16.1	44.47	749
 
 
 
@@ -98,3 +193,75 @@ plt.show()
 
 #IQR에 1.5배 멀어진 값은 이상치로 간주
 # 데이터 전처리 사용이유 - 쓸모없는 데이터 처리
+
+df.describe() #통계값 구하기.
+
+temp	level	EC
+count	69548.000000	69548.000000	69548.000000
+mean	16.262491	44.295353	727.024027
+std	0.089778	2.539464	51.544590
+min	15.800000	11.530000	13.000000
+25%	16.200000	44.370000	722.000000
+50%	16.300000	44.460000	730.000000
+75%	16.300000	44.550000	742.000000
+max	16.500000	45.900000	778.000000
+
+df.hist(bins=50,figsize=(10,6)) #구간은 50 그래프 크기는 10,6으로
+plt.show()
+
+df.boxplot() # 전체의 박스플롯을 표현.
+plt.show()
+
+df.boxplot(column='EC') #EC의 박스플롯만 표현.
+plt.show()
+
+plt.subplot(1,3,1);df.boxplot(columns='temp',return_type='both')
+plt.subplot(1,3,2);df.boxplot(columns='level',return_type='both')
+plt.subplot(1,3,3);df.boxplot(columns='EC',return_type='both')
+
+q3_level=df['level'].quantile(q=0.75)
+print(q3_level)
+
+q1_level=df['level'].quantile(q=0.25)
+print(q1_level)
+
+iqr_level=q3_level - q1_level
+print(iqr_level)
+
+        결과
+44.55
+44.37
+0.17999999999999972
+
+upper_level = q3_level + 1.5 * iqr_level
+lower_level = q1_level - 1.5 * iqr_level
+
+print(upper_level,'/',lower_level)
+print((df['level'] > upper_level).sum())
+print((df['level'] < lower_level).sum())
+
+           결과
+44.81999999999999 / 44.099999999999994
+4492
+1273
+
+df_iqr_level = df[(df['level'] < upper_level) & df['level']>lower_level]
+df_iqr_level.head(3)
+
+df_iqr_level.describe()
+    결과
+	temp	level	EC
+count	0.0	0.0	0.0
+mean	NaN	NaN	NaN
+std	NaN	NaN	NaN
+min	NaN	NaN	NaN
+25%	NaN	NaN	NaN
+50%	NaN	NaN	NaN
+75%	NaN	NaN	NaN
+max	NaN	NaN	NaN
+
+df_iqr_level['level'].plot()
+plt.show()
+
+iqr_level.boxplot(columns='level')
+boxplot.show()
