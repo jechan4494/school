@@ -265,3 +265,53 @@ plt.show()
 
 iqr_level.boxplot(columns='level')
 boxplot.show()
+
+2.1 탐색적 분석 정의
+분석할 데이터의 전체적인 특성을 살펴보는것 데이터 탐색
+데이터 탐색에 데이터를 시각화하여 그래프를 그려보는 방법이 기본
+히트소토그램,박스플롯
+범주형
+1 편의상 문자를 숫자로 대체하는것 2 ex) 요일을 월화수 -> 1 2 3
+
+순서형
+1 여성의 옷 사이즈를 나타내는 44 55 66같은 것들
+
+정형과 비정형 데이터
+1 정형화된 데이터로 바꿔줘야함
+
+import platform
+
+from matplotlib import font_manager, rc 
+
+import matplotlib
+
+# '-' 부호가 제대로 표시되게 하는 설정 
+
+matplotlib.rcParams['axes.unicode_minus'] = False
+
+# 운영 체제마다 한글이 보이게 하는 설정 # 윈도우
+
+if platform.system() == 'Windows':
+
+    path = "c:\Windows\Fonts\malgun.ttf"
+
+    font_name = font_manager.FontProperties(fname=path).get_name() 
+
+    rc('font', family=font_name) 
+
+elif platform.system() == 'Darwin':  #맥
+
+    rc('font', family='AppleGothic')
+
+elif platform.system() == 'Linux': # 리눅스
+
+    rc('font', family='NanumBarunGothic')
+
+from matplotlib import pyplot as plt
+%matplotlib inline
+
+power_data = pd.read_excel('염쨩/시도별_용도별.xls')
+print(power_data.shape)
+
+
+
