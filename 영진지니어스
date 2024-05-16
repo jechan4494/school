@@ -1,33 +1,56 @@
-import platform
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+Cell In[7], line 1
+----> 1 power_data = pd.read_excel('./aa/시도별 용도별.xls')
+      2 print(power_data.shape)
 
-from matplotlib import font_manager, rc 
+File ~\anaconda3\Lib\site-packages\pandas\io\excel\_base.py:504, in read_excel(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)
+    502 if not isinstance(io, ExcelFile):
+    503     should_close = True
+--> 504     io = ExcelFile(
+    505         io,
+    506         storage_options=storage_options,
+    507         engine=engine,
+    508         engine_kwargs=engine_kwargs,
+    509     )
+    510 elif engine and engine != io.engine:
+    511     raise ValueError(
+    512         "Engine should not be specified when passing "
+    513         "an ExcelFile - ExcelFile already has the engine set"
+    514     )
 
-import matplotlib
+File ~\anaconda3\Lib\site-packages\pandas\io\excel\_base.py:1563, in ExcelFile.__init__(self, path_or_buffer, engine, storage_options, engine_kwargs)
+   1561     ext = "xls"
+   1562 else:
+-> 1563     ext = inspect_excel_format(
+   1564         content_or_path=path_or_buffer, storage_options=storage_options
+   1565     )
+   1566     if ext is None:
+   1567         raise ValueError(
+   1568             "Excel file format cannot be determined, you must specify "
+   1569             "an engine manually."
+   1570         )
 
-# '-' 부호가 제대로 표시되게 하는 설정 
+File ~\anaconda3\Lib\site-packages\pandas\io\excel\_base.py:1419, in inspect_excel_format(content_or_path, storage_options)
+   1416 if isinstance(content_or_path, bytes):
+   1417     content_or_path = BytesIO(content_or_path)
+-> 1419 with get_handle(
+   1420     content_or_path, "rb", storage_options=storage_options, is_text=False
+   1421 ) as handle:
+   1422     stream = handle.handle
+   1423     stream.seek(0)
 
-matplotlib.rcParams['axes.unicode_minus'] = False
+File ~\anaconda3\Lib\site-packages\pandas\io\common.py:872, in get_handle(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)
+    863         handle = open(
+    864             handle,
+    865             ioargs.mode,
+   (...)
+    868             newline="",
+    869         )
+    870     else:
+    871         # Binary mode
+--> 872         handle = open(handle, ioargs.mode)
+    873     handles.append(handle)
+    875 # Convert BytesIO or file objects passed with an encoding
 
-# 운영 체제마다 한글이 보이게 하는 설정 # 윈도우
-
-if platform.system() == 'Windows':
-
-    path = "c:\Windows\Fonts\malgun.ttf"
-
-    font_name = font_manager.FontProperties(fname=path).get_name() 
-
-    rc('font', family=font_name) 
-
-elif platform.system() == 'Darwin':  #맥
-
-    rc('font', family='AppleGothic')
-
-elif platform.system() == 'Linux': # 리눅스
-
-    rc('font', family='NanumBarunGothic')
-
-from matplotlib import pyplot as plt
-%matplotlib inline
-
-power_data = pd.read_excel('염쨩/시도별 용도별.xls')
-print(power_data.shape)
+FileNotFoundError: [Errno 2] No such file or directory: './aa/시도별 용도별.xls'
