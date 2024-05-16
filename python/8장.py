@@ -313,5 +313,65 @@ from matplotlib import pyplot as plt
 power_data = pd.read_excel('염쨩/시도별_용도별.xls')
 print(power_data.shape)
 
+power_data.head(5)
 
+power_data.columns
 
+power_data.values # 제목들만보여줌
+
+power_data2 = pd.read_excel('염쨩/시도별_용도별.xls',header = 2) # 2라인까지다
+print(power_data2.shape)
+power_data2.head(5)
+
+power= power.drop(['개성','합계'],errors='ignore') # power데이터에서 개성 함계를 지워라
+power
+
+power.info()
+
+power.describe()
+
+power.count() # 파워의 행의 개수를 보여줌
+
+corr()
+두 변수간의 관계의 강도를 상관관계
+그 정도를 파악하는 것을 상관 개수
+1에 가까울수록 변수 간에 양의 상관관계를 가지며
+-1에 가까울수록 음의 상관관계를 가진다
+
+power.corr()
+
+power = power[['서비스업','제조업']]
+power.head(3)
+
+power = power.drop(['경기','서울'])
+
+plt.figure(figsize = (8,8))
+plt.scatter(power['서비스업'],power['제조업'],c='k',marker='o')
+plt.xlabel('서비스업')
+plt.ylabel('제조업')
+
+for n in range(power.shape[0]):
+    plt.text(power['서비스업'][n]*1.03, power['제조업'][n]*0.98,power.index[n])
+
+import seaborn as sns
+from scipy.stats import norm 
+from sklearn.preprocessing import *
+from scipy import stats
+import warnings
+warnings.filterwarnings('ignore')
+%matplotlib inline
+
+df_train = pd.read_csv('./염쨩/train.csv')
+df_train.columns[:10]
+df_train.shape
+
+df_train['SalePrice'].describe()
+
+sns.distplot(df_train['SalePrice'])
+
+var = 'GrLivArea'
+#var = input('알고싶은 지역명')
+data = pd.concat([df_train['SalePrice'],df_train[var]],axis=1)
+data
+
+data.plot.scatter(x=var,y='SalePrice',ylim=(0,1000000));
