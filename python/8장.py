@@ -375,3 +375,48 @@ data = pd.concat([df_train['SalePrice'],df_train[var]],axis=1)
 data
 
 data.plot.scatter(x=var,y='SalePrice',ylim=(0,1000000));
+
+corrmat = df_train.corr()
+f, ax = plt.subplots(figsize = (12,9))
+sns.heatmap(corrmat,vmax =.8,square=False)
+
+total = df_train.isnull().sum().sort_values(ascending=False) # null들의 합을 내림차순 정렬
+df_train.isnull().mean().sort_values(ascending=False) # 넏들의 평균의 내림차순
+
+percent = (df_train.isnull().sum() 
+           /df_train.isnull().count()).sort_values(ascending=False)
+
+missing_data=pd.concat([total,percent],axis = 1,keys=['Total','Percent'])
+missing_data.head(20)
+
+df_train = df_train.drop((missing_data[missing_data['Total']>1]).index,1)
+df_train = df_train.drop(df_train.loc[df_train['Electrical'].isnull()].index)
+print(df_train.isnull().sum().max())
+df_train
+
+df_train['SalePrice']
+
+saleprice_scaled = StandardScaler().fit_transform(df_train['SalePrice'][:,np.newaxis]); # 
+low_range = saleprice_scaled[saleprice_scaled[:,0].argsort()][:10]
+high_range = saleprice_scaled[saleprice_scaled[:,0].argsort()][-10:]
+print('outer range (low) of the distribution:')
+print(low_range)
+print('outer range (high) of the distribution:')
+print(high_range)
+
+df = pd.DataFrame({
+    'x1' : np.random.normal(0,2,10000), # (평균,표준편차,개수) 정규분포 확률밀도에 의한 무작위값을 출력
+    'x2' : np.random.normal(5,3,10000),
+    'x3' : np.random.normal(-5,5,10000)
+})
+print(df)
+df.plot.kde()
+
+from sklearn.preprocessing import StandardScaler # import뒤에 임의의 값 이름 지정
+
+standardscaler = StandardScaler() 
+data_tf = standardscaler.fit_transform(df)
+df = pd.DataFrame(data_tf,columns =['x1','x2','x3'])
+
+df.plot.kde() # 커널 밀더 주정(KDE : Kernel Densiry Estimator)
+
