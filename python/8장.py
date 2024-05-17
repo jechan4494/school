@@ -420,3 +420,5 @@ df = pd.DataFrame(data_tf,columns =['x1','x2','x3'])
 
 df.plot.kde() # 커널 밀더 주정(KDE : Kernel Densiry Estimator)
 
+# 파이썬에서 파일이 해주는것 뉴클리드거리
+
