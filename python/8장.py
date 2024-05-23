@@ -422,3 +422,23 @@ df.plot.kde() # 커널 밀더 주정(KDE : Kernel Densiry Estimator)
 
 # 파이썬에서 파일이 해주는것 뉴클리드거리
 
+D.S- D-A =>설명을 위해서
+
+Data -> 수집.측정.웹크롤링
+전처리 ->nan.틀린.이상치-> 삭제,대체 ->EDA->describe->boxplot
+ML AL ->AI
+
+#상관관계 분석 - > 데이터를 데이터 프레임으로 만들어줘야함!
+
+최대적합 -> test data all 고려 -> AL 복잡, newdata
+
+피어슨 상관분석 -> 가장 일반적
+스피어만 상관분석 -> 정규화가 안되어있을때
+캔달 상관분석 -> 표본이 적고, 동점이 많을때 사용
+
+# y = 2x+80 == y = ax + b x는 원인,독립변수 y는 결과 -> 종속된다 / 
+# 다중 선형 회귀분석(ex- x = 나이,몸무게, y = 혈압),단순 선형 회귀분석
+
+# 선형회귀 예시
+fit = ols('y~x',data=df).fit()
+print(fit.summary())
