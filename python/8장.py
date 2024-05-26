@@ -326,11 +326,11 @@ power_data2.head(5)
 power= power.drop(['개성','합계'],errors='ignore') # power데이터에서 개성 함계를 지워라
 power
 
-power.info()
+power_data2.info()
 
-power.describe()
+power_data2.describe()
 
-power.count() # 파워의 행의 개수를 보여줌
+power_data2.count() # 파워의 행의 개수를 보여줌
 
 corr()
 두 변수간의 관계의 강도를 상관관계
@@ -338,9 +338,9 @@ corr()
 1에 가까울수록 변수 간에 양의 상관관계를 가지며
 -1에 가까울수록 음의 상관관계를 가진다
 
-power.corr()
+power_data2.corr()
 
-power = power[['서비스업','제조업']]
+power = power_data2[['서비스업','제조업']]
 power.head(3)
 
 power = power.drop(['경기','서울'])
