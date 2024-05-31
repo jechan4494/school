@@ -442,3 +442,6 @@ ML AL ->AI
 # 선형회귀 예시
 fit = ols('y~x',data=df).fit()
 print(fit.summary())
+
+KFold = 각각의 기울기와 y절편을 출력하고 평균값을 출력력
+max_iter = 숫자 ( 학습 숫자만큼 반복)
