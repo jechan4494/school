@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>로그인 페이지</title>
+</head>
+
+<body>
+<form name="fo" method="get" action="1.jsp">
+  <input type ="color" value ="00FF00"
+         onchange=document.body.style.color=this.value>
+<br/>
+  <label>
+    <input type ="radio" name = "china" value ="1">
+    짜장면 <img src ="OIP.jfif">
+  </label><br/>
+  <label> 그냥 글자 </label><br/>
+
+
+  <select name = "china">
+    <option value ="1">짜장면</option>
+    <option value ="2" selected>짬뽕</option>
+    <option value ="3">탕수육</option>
+  </select><br/>
+
+  <img src = "OIP.jfif"/>
+  <br/>
+  <input type = "reset" value ="취소"/><br/>
+  <input type = image src="OIP.jfif"/> <br/>
+
+  짜장면 <input type = "checkbox" name ="a1" value ="1" >
+  짬뽕 <input type = "checkbox" name ="a2" value ="2" >
+  탕수육 <input type = "checkbox" name ="a3" value ="3" checked> <br/>
+
+  짜장면 <input type = "radio" name ="b1" value ="1" >
+  짬뽕 <input type = "radio" name ="b2" value ="2" >
+  탕수육 <input type = "radio" name ="b3" value ="3" checked> <br/>
+
+  나라 : <input type="text" list="countries">
+          <datalist id = "countries">
+            <option value="가나">
+              <option value ="스위스">
+            <option value ="브라질">
+          </datalist>
+  </input><br/>
+
+  사용자 ID : <input type="text" name="userId" size="15" value="" maxlength="5"><br/>
+  비밀번호 : <input type="password" name="password" size="15" value=""><br/>
+  내용 : <textarea cols="20" rwos= "5"> 이 글자 안보임 </textarea><br/>
+  내용2 : <textarea cols="20" rwos= "5"/></br>
+  <input type="submit" value="완료">
+</form>
+</body>
+
+</html>
